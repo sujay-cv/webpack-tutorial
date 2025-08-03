@@ -1,3 +1,3 @@
-import helloWorld from './hello-world.j';
+import helloWorld from './hello-world.js';
 
 helloWorld();
