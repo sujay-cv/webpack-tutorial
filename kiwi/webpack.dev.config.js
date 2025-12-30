@@ -8,7 +8,7 @@ module.exports = {
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, './dist'),
-        publicPath: ''
+        publicPath: 'http://localhost:9002/'
     },
     mode: 'development',
     devServer: {
@@ -48,7 +48,7 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: [ '@babel/env' ],
+                        presets: ['@babel/env'],
                     }
                 }
             },
@@ -70,8 +70,9 @@ module.exports = {
         }),
         new ModuleFederationPlugin({
             name: 'KiwiApp',
-            remotes: {
-                HelloWorldApp: 'HelloWorldApp@http://localhost:9001/remoteEntry.js'
+            filename: 'remoteEntry.js',
+            exposes: {
+                './KiwiPage': './src/components/kiwi-page/kiwi-page.js'
             }
         })
     ]
